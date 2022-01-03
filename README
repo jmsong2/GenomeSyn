@@ -1,0 +1,503 @@
+GenomeSyn: A software for the visualization of genome synteny 
+
+GenomeSyn is an easy-to-use application, users only need to submit two or three genomes data of the same species and different species, GenomeSyn will automatically process these genomic data, which can realize the visualization from sequence alignment to genome synteny analysis the whole process of drawing out. To complete sequence alignment and genome synteny analysis visualization, GenomeSyn performs the following steps: 
+1. the user provides two to three FASTA file data of the same species genome, as well as optional additional data files in BED, GFF3 and other formats-genome annotation files. 
+2. When the user does not provide the coords file, GenomeSyn will call the comparison tool MUMmer to compare the submitted genome FASTA files, and generate the coords comparison file of the corresponding genome. 
+3. Perform genomic synteny analysis and visualization based on the files and parameters provided by the user. GenomeSyn is very easy to download, use and install. You can download and unzip the GenomeSyn package using wget or through git. 
+```
+#download the GenomeSyn
+Wget https://cbi.gxu.edu.cn/GenomeSyn//download/GenomeSyn1.2.0.tar.gz/
+or 
+git clone https://github.com/JM-SONG/GenomeSyn.git
+```
+## Dependencies
+1. MUMmer  
+You can find [MUMmer]( https://github.com/mummer4/mummer/releases ). We used Mummer-4.0.0beta2. Mummer version 4.x.x requires a recent version of the GCC compiler (g++ version >= 4.7), which is hard to install if you have no ***administrator authority***. You can ask your system administrator for some help in this case.
+```
+$ wget https://github.com/mummer4/mummer/releases/download/v4.0.0beta2/mummer-4.0.0beta2.tar.gz
+$ tar -xvzf mummer-4.0.0beta2.tar.gz
+$ cd mummer-4.0.0beta2
+$ ./configure --prefix=`pwd`
+$ make
+# Add MUMmer tools to your PATH
+$ export PATH=/your_path/GenomeSyn/mummer-4.0.0beta2:$PATH
+``` 
+2. Perl and perl module we recommend that the version of perl should be at least 5.10.0 (use perl -v to check the version). Although most of the GenomeSyn modules used already exist, you may still need to install the SVG module and the BioPerl module. Due to the lack of administrator rights, it is sometimes troublesome to install perl modules under Linux systems. This page introduces two installations of the [SVG]( https://cpan.metacpan.org/authors/id/M/MA/MANWAR/SVG-2.85.tar.gz ) module and three installations [BioPerl]( https://cpan.metacpan.org/authors/id/C/CJ/CJFIELDS/BioPerl-1.7.8.tar.gz ) module method, but in fact cpanm is the most friendly installation perl module method. You can find the pre-compiled source code of cpanm here [page](https://bioperl.org/INSTALL.html). There are SVG and BioPerl compressed packages in our GenomeSyn, which can be installed and used after decompression. 
+```
+# install SVG
+$ cpanm SVG
+#Unzip and install SVG
+$ tar -zxvf SVG-2.85.tar.gz
+$ cd SVG-2.85/
+$ perl Makefile.PL
+$ make
+$ make test
+# Add SVG to your PATH
+$ PERL5LIB=/your_path/GenomeSyn/SVG-2.85/lib:$PERL5LIB
+
+# install BioPerl
+$ cpanm Bio::SeqIO
+#Unzip and install BioPerl
+$ tar -zxvf BioPerl-1.7.8.tar.gz
+$ cd BioPerl-1.7.8/
+$ perl Makefile.PL
+$ make
+$ make test
+# Add Perl module to your PATH
+$ PERL5LIB=/your_path/GenomeSyn/BioPerl-1.7.8/lib:$PERL5LIB
+```
+3. Python and python module
+Here we need to use python's svglib package to convert the output SVG file into a PDF file. Install [Python]( https://www.python.org/ftp/python/3.9.4/Python-3.9.4.tgz ) and svglib[svglib]( https://files.pythonhosted.org/packages/c0/2c/5ab28095c9ce09a6d341cb37c0ad3a7ffc65e5c5f2eaa2247c085679ca2f/svglib-1.1.0.tar.gz ) package can refer to the following:
+```
+$ tar -zxvf Python-3.9.4.tgz -C ./
+$ cd ./Python-3.9.4
+$./configure --prefix=$current_path/Python-3.9.4/localpython
+$ make
+$ make install
+$ Add Python to your PATH
+$ PATH=/your_path/GenomeSyn/Python-3.9.4/python:$PATH
+
+$ tar -zxvf svglib-1.1.0.tar.gz -C ./
+$ cd svglib-1.1.0/
+$ /your_path/GenomeSyn/Python-3.9.4/python setup.py install
+
+```
+There is an install.sh script in our GenomeSyn package. Running this shell script can help us install the required modules (SVG, BioPerl, Python and svglib of python module) and add environment variables for the corresponding modules. After running this shell script, reload the environment variables to run.
+
+##Input files and parameters and output files
+###Input files and input parameters
+####We need to run GenomeSyn in the bin directory of the GenomeSyn package, and at least need to enter two genome sequence files. The genome sequence file should be a fasta file with the following format:
+When running GenomeSyn, at least two genome sequence files are required.
+```
+> chr1
+ATCGATCG...
+```
+The file extension does not matter, ".fa", ".fasta" or any other suffixes are acceptable. 
+
+When the user provides the .coords format file obtained from the MUMmer comparison, the format of [coords]( https://github.com/mummer4/mummer#show-coords ) is as follows:
+```
+[S1]	[E1] [S2] [E2] [LEN 1] [LEN 2] [% SIM] [LEN R] [LEN Q] [COV R] [COV Q] [FRM] [TAGS]
+5696	16814	13703	24900	11119	11198	98.49	45027022	44754788	0.02	0.03	Chr01	Chr01
+16811	33613	35218	51975	16803	16758	98.84	45027022	44754788	0.04	0.04	Chr01	Chr01
+34388	59146	54875	79659	24759	24785	98.53	45027022	44754788	0.05	0.06	Chr01	Chr01
+
+```
+Or when the user has the [PAF](https://github.com/lh3/miniasm/blob/master/PAF.md'PAF') format file obtained from the minimap2 comparison, users can use the The "Transform --PAF example.PAF" command completes the format conversion.
+
+
+Annotation file should be [GFF3]( https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md ) format:
+```
+Chr01	.	gene	0	54104	.
+Chr01	.	gene	100000	141769	.
+Chr01	.	gene	200000	242891	.
+Chr01	.	gene	300000	360718	.
+Chr01	.	gene	400000	454507	.
+Chr01	.	gene	500000	559517	.
+Chr01	.	gene	600000	626134	.
+Chr01	.	gene	700000	743341	.
+Chr01	.	gene	800000	836032	.
+Chr01	.	gene	900000	1013741	.
+```
+Or use [bed]( https://github.com/jacobbierstedt/gfftobed/blob/main/README.md ) format:
+```
+seqnames	start	end	score	type
+Chr01	17417539	18370852	.	centromere
+Chr02	13759911	14305349	.	centromere
+Chr03	21123378	21518947	.	centromere
+Chr11	1	.	.	telomere
+Chr12	1	.	.	telomere
+Chr01	45019925	.	.	telomere
+Chr01	0	100000	711	SNP
+Chr01	100000	200000	706	SNP
+Chr01	200000	300000	810	SNP
+Chr01	0	100000	36015	TE
+Chr01	100000	200000	47546	TE
+Chr01	200000	300000	47087	TE
+Chr01	0	10000	4304	GC
+Chr01	10000	20000	4480	GC
+Chr01	20000	30000	4062	GC
+Chr01	33614	34387	.	PAV
+Chr01	59147	62403	.	PAV
+Chr01	180579	181231	.	PAV
+Chr01	683961	685567	*	NLR
+Chr01	2729604	2735179	*	NLR
+Chr01	4092488	4103802	*	NLR
+```
+### Output files
+The main output files of GenomeSyn are "GenomeSyn-main-1" and "GenomeSyn-main-2" SVG files and PDF files. In addition, GenomeSyn also generates some other statistical results graphs. The percent identity indicates the proportion of the collinearity area in the entire chromosome, and the coverage indicates the average coverage of the collinearity area. The heat map can fully display the collinearity fragments between the chromosomes. We have drawn two main output files with the genome information of two (MH63 and ZS97)/three (MH63, ZS97, and R498) different rice varieties in the example directory, as well as a histogram of percent consistency, a histogram of percentage of coverage, and a heat map. .
+
+##Test GenomeSyn with sample data
+You can go to [GenoemSyn]( https://cbi.gxu.edu.cn/GenomeSyn/ ) to download data for testing. For commands, refer to the help file (GenomeSyn -man) for operation.If you receive any errors, you can contact us via email(zwzhou@st.gxu.edu.cn).
+
+All data and output used in the above papers can be downloaded from [GenomeSyn]( https://cbi.gxu.edu.cn/GenomeSyn//download_example/ ) download.
+
+##Help Documentation
+```
+GenomeSyn --- Draw two/three genomes synteny blocks.
+
+SYNOPSIS
+
+GenomeSyn [options]
+
+example:
+    
+    a) GenomeSyn -g1 ../data/rice_MH63.fa -g2 ../data/rice_ZS97.fa
+
+    b) GenomeSyn -t 3 -g1 ../data/rice_MH63.fa -g2 ../data/rice_ZS97.fa -cf1 ../data/rice_MH63vsZS97.delta.filter.coords
+
+    c) GenomeSyn -t 3 -g1 ../data/rice_MH63.fa -g2 ../data/rice_ZS97.fa -cf1 ../data/rice_MH63vsZS97.delta.filter.coords -cen1 ../data/rice_MH63_centromere.bed -cen2 ../data/rice_ZS97_centromere.bed -tel1 ../data/rice_MH63_telomere.bed -tel2 ../data/rice_ZS97_telomere.bed -TE1 ../data/rice_MH63_repeat.bed -TE2 ../data/rice_ZS97_repeat.bed -PAV1 ../data/rice_MH63_PAV.bed -PAV2 ../data/rice_ZS97_PAV.bed -NLR1 ../data/rice_MH63_NLR.bed -NLR2 ../data/rice_ZS97_NLR.bed -r MH63 -q ZS97 -GD1 ../data/rice_MH63_nonTEgene.gff3 -GD2 ../data/rice_ZS97_nonTEgene.gff3 -GC1 ../data/rice_MH63_GC_10000.bed -GC2 ../data/rice_ZS97_GC_10000.bed -GC_win 100000 -TE_min 40
+
+    d) GenomeSyn -t 3 -n3 12 -g1 ../data/rice_MH63.fa -g2 ../data/rice_ZS97.fa -g3 ../data/rice_R498.fasta -cf1 ../data/rice_MH63vsZS97.delta.filter.coords -cf2 ../data/rice_MH63vsR498.delta.filter.coords -cen1 ../data/rice_MH63_centromere.bed -cen2 ../data/rice_ZS97_centromere.bed -cen3 ../data/rice_R498_centromere.bed -tel1 ../data/rice_MH63_telomere.bed -tel2 ../data/rice_ZS97_telomere.bed -tel3 ../data/rice_R498_telomere.bed -TE2 ../data/rice_ZS97_repeat.bed -PAV1 ../data/rice_MH63_PAV.bed -PAV2 ../data/rice_ZS97_PAV.bed -NLR1 ../data/rice_MH63_NLR.bed -NLR2 ../data/rice_ZS97_NLR.bed -r MH63 -q1 ZS97 -q2 R498 -GD1 ../data/rice_MH63_nonTEgene.gff3 -GD2 ../data/rice_ZS97_nonTEgene.gff3 -GD3 ../data/rice_R498_IGDBv3_coreset.gff -GC2 ../data/rice_ZS97_GC_10000.bed -GC_win 100000 -TE_min 40
+
+OPTIONS
+
+-aligntype/-at/-t
+
+    The output mode is divided into four output modes, the parameter value is 1/2/3/4, and the default value is 1; When the value is 1, only the one-to-one double/triple sequence comparison chart will be output; when the value is 2, only the multiple-to-multiple double/triple sequence comparison chart will be output; when the value is 3, it will output simultaneously in 1, 2 mode Two comparison graphs of; when the value is 4, in addition to the first two comparison graphs, some statistical sub-graphs will be generated, such as consistency heat map, consistency histogram, and coverage histogram.
+
+-genomeSeq1/-g1
+
+    Input the genome1 fasta file to obtain the length of each chromosome in the genome1(ie reference genome).
+
+-genomeSeq2/-g2
+
+    Input the genome2 fasta file to obtain the length of each chromosome in the genome2(ie query genome).
+
+-genomeSeq3/-g3
+
+    Input the genome3 fasta file to obtain the length of each chromosome in the genome3(ie query genome2).
+
+-comparison_file/-comparison_file1/-cf/-cf1
+    
+	Input the coordinate file for comparing genome1 and genome2, if there is no coordinate file, call mummer to compare genome1 and genome2 to generate this coordinate file, such as ReferencevsQuery1.delta.filter.coords.
+
+-comparison_file2/-cf2
+    
+	Input the coordinate file for comparing genome1 and genome3, if there is no coordinate file, call mummer to compare genome1 and genome3 to generate this coordinate file, such as ReferencevsQuery2.delta.filter.coords.
+
+-comparison_file3/-cf3
+    
+	Input the coordinate file for comparing genome2 and genome3, if there is no coordinate file, call mummer to compare genome2 and genome3 to generate this coordinate file, such as Query1vsQuery2.delta.filter.coords.
+
+-SVG_PDF/-pdf
+    
+	Format transition, generate the corresponding PDF format file with the SVG format file as the original, value is 1/0, default true(1), that is default output SVG format and PDF format files are output at the same time.
+
+-sort
+    
+	The -sort parameter has two modes, "match" and "reference_length_match", which are not sorted by default. "match" mode function: according to the chromosome number of the reference, the chromosome number of the query is sorted for the best match; "reference_length_match" mode function: first sort the reference chromosome numbers according to the chromosome length from long to short, and then sort the query chromosome numbers according to the best match.
+
+-chromosomename/-cn
+    
+	Chromosome numeration setting, the value is 1/0, and the default value is false (0); when the value is 0, the unified chromosome numeration(Chromosome numeration for reference genome) will be displayed on the output map, and when the value is 1, the actual chromosome numeration in the comparison file will be displayed on the output map.
+
+-referencename/-reference/-ref/-r
+    
+	Set the name of the genome1, default output is "reference".eg. MH63
+
+-queryname/-queryname1/-query/-query1/-q/-q1
+    
+	Set the name of the genome2, default output is "query"/"query1".eg. ZS97
+
+-queryname2/-query2/-q2
+    
+	Set the name of the genome3, default output is "query2".eg. R498
+
+-centromere_genome1/-centromere1/-cen1
+    
+	Input the centromere position file of genome1, the file uses the bed (Browser Extensible Data) format, and draw centromeres on each chromosome of genome1.
+
+-centromere_genome2/-centromere2/-cen2
+    
+	Input the centromere position file of genome2, the file uses the bed (Browser Extensible Data) format, and draw centromeres on each chromosome of genome2.
+
+-centromere_genome3/-centromere3/-cen3
+    
+	Input the centromere position file of genome3, the file uses the bed (Browser Extensible Data) format, and draw centromeres on each chromosome of genome3.
+
+-telomere_genome1/-telomere1/-tel1
+    
+	Input the telomere position file of genome1, the file uses the bed format, and draw telomere on each chromosome of genome1.
+
+-telomere_genome2/-telomere2/-tel2
+    
+	Input the telomere position file of genome2, the file uses the bed format, and draw telomere on each chromosome of genome2.
+
+-telomere_genome3/-telomere3/-tel3
+    
+	Input the telomere position file of genome3, the file uses the bed format, and draw telomere on each chromosome of genome3.
+
+-snp_genome1/-snp1
+    
+	Input the SNP file of genome1, which uses the bed format to map the SNP distribution of genome1.
+
+-snp_genome2/-snp2
+    
+	Input the SNP file of genome2, which uses the bed format to map the SNP distribution of genome2.
+
+-snp_genome3/-snp3
+    
+	Input the SNP file of genome3, which uses the bed format to map the SNP distribution of genome3.
+
+-snp_thresholds/-snp_max
+    
+	SNP threshold setting, that is, setting the upper limit of SNP statistics, the default value is 2000.
+
+-TE_genome1/-TE1
+    
+	Input the TE file of genome1, which uses the bed format to map the TE distribution of genome1.
+
+-TE_genome2/-TE2
+    
+	Input the TE file of genome2, which uses the bed format to map the TE distribution of genome2.
+
+-TE_genome3/-TE3
+    
+	Input the TE file of genome3, which uses the bed format to map the TE distribution of genome3.
+
+-TE_thresholds/-TE_min
+    
+	Set the TE threshold that set the lower limit of TE statistics, default the integer value of the smallest TE proportion in the TE file used is the lower limit, for example, the minimum TE is 11%, the icon in the lower right corner shows a scale of 10%-100%, the minimum TE is 28%, and the icon in the lower right corner shows a scale of 20%-100%; if the user inputs the lower limit of TE, it will be output according to the lower limit of TE input by the user, and the value is 0-100. For example: input "-TE_min 50", then a 50%-100% TE statistical graph will be drawn, TE has two display forms, but only when TE is displayed in a histogram, the lower limit of TE can be adjusted.
+
+-GC_genome1/-GC_content1/-GC1
+    
+	Input the bed format file of the GC content of genome1 to plot the distribution of the GC content of genome1.
+
+-GC_genome2/-GC_content2/-GC2
+    
+	Input the bed format file of the GC content of genome2 to plot the distribution of the GC content of genome2.
+
+-GC_genome3/-GC_content3/-GC3
+    
+	Input the bed format file of the GC content of genome2 to plot the distribution of the GC content of genome3.
+
+-PAV_genome1/-PAV1
+    
+	Input the PAV file of genome1, which uses the bed format to map the PAV distribution of genome1.
+
+-PAV_genome2/-PAV2
+    
+	Input the PAV file of genome2, which uses the bed format to map the PAV distribution of genome2.
+
+-PAV_genome3/-PAV3
+    
+	Input the PAV file of genome3, which uses the bed format to map the PAV distribution of genome3.
+
+-NLR_genome1/-NLR1
+    
+	Input the NLR file of genome1, which uses the bed format to map the NLR distribution of genome1.
+
+-NLR_genome2/-NLR2
+    
+	Input the NLR file of genome2, which uses the bed format to map the NLR distribution of genome2.
+
+-NLR_genome3/-NLR3
+    
+	Input the NLR file of genome3, which uses the bed format to map the NLR distribution of genome3.
+
+-gene_density_genome1/-GD1
+    
+	Input the annotation file of genome1, which uses the gff3 format to map the gene density distribution of genome1.
+
+-gene_density_genome2/-GD2
+    
+	Input the annotation file of genome2, which uses the gff3 format to map the gene density distribution of genome2.
+
+-gene_density_genome3/-GD3
+    
+	Input the annotation file of genome3, which uses the gff3 format to map the gene density distribution of genome3.
+
+-GeneDensity_Window/-GD_win
+    
+	Set the window size for statistical gene density, this parameter is a required parameter when the gene density is counted in the annotation file of the input gene, the value can be set to 100000.
+
+-SNP_Window/-SNP_win
+    
+	Set the window size for statistical SNPs, this parameter is optional, its value is determined by default according to the window size in the bed file of the input SNP of genome1.
+
+-TE_Window/-TE_win
+    
+	Set the window size for statistical TEs, this parameter is optional, its value is determined by default according to the window size in the bed file of the input TEs of genome1.
+
+-GC_Content_Window/-GC_win
+    
+	Set the window size for statistical GC content, this parameter is optional, its value is determined by default according to the window size in the bed file of the input GC content of genome1.
+
+-synteny_length_min/-synteny_min/-syn_min
+    
+	Set the minimum length for drawing synteny fragments, the default value is 10000.
+
+-inversion_length_min/-inversion_min/-inv_min
+    
+	Set the minimum length for drawing inversion fragments, the default value is 10000.
+
+-PAV_length_min/-PAV_min
+    
+	Set the minimum length for drawing PAV, the default value is 10000.
+
+-NLR_length_min/-NLR_min
+    
+	Set the minimum length for drawing NLR, the default value is 10000.
+
+-coverage_rate_min/-coverage_min/-cov_min
+    
+	Set the minimum coverage (%) for drawing synteny fragments, the default value is 90.
+
+-icon
+    
+	Whether to output the main image icon, value is 1/0, default true(1).
+
+-proportion1/-p1
+    
+	Set the chromosome window size of the one-to-one double/triple sequence alignment chart, the default value is 25000.
+
+-proportion2/-p2
+    
+	Set the chromosome window size of the multiple-to-multiple double/triple sequence alignment chart, the default value is four times the value of -proportion1/-p1, that is, the default is 100000.
+
+-targetgene_genome1/-targetgene1/-gene1
+    
+	Input the target gene file of genome 1, the file uses the bed format, the target gene can be any gene that the user studies.
+
+-targetgene_genome2/-targetgene2/-gene2
+    
+	Input the target gene file of genome 2, the file uses the bed format, the target gene can be any gene that the user studies.
+
+-targetgene_genome3/-targetgene3/-gene3
+    
+	Input the target gene file of genome 3, the file uses the bed format, the target gene can be any gene that the user studies.
+
+-targetgene_name/-targetgene
+    
+	Set the name of the target gene, default output as "Target Gene".
+
+-genomenumber/-gn/-n
+    
+	Comparison mode, double/triple sequence comparison, this parameter is optional, the parameter value can be set to 2/3,the value is determined by the number of input genomes by default, that is, when two genomes are input, the value is 2, and when three genomes are input, the value is 3.
+
+-chromosomenumber1/-n1
+    
+	Set the number of chromosomes in genome1,this parameter is optional, and its value is determined by the number of chromosomes in the fasta file of the input genome1 by default, or it can be set by users.eg. 12
+
+-chromosomenumber2/-n2
+    
+	Set the number of chromosomes in genome2,this parameter is optional, and its value is determined by the number of chromosomes in the fasta file of the input genome2 by default, or it can be set by users.eg. 12
+
+-chromosomenumber3/-n3
+    
+	Set the number of chromosomes in genome3,this parameter is optional, and its value is determined by the number of chromosomes in the fasta file of the input genome3 by default, or it can be set by users.eg. 12
+
+-output1/-o1
+    
+	Set the name of output SVG format file1, default "GenomeSyn-main-1.svg".
+
+-output2/-o2
+    
+	Set the name of output SVG format file2, default "GenomeSyn-main-2.svg".
+
+-output3/-o3
+    
+	Set the name of output SVG format file3, default "GenomeSyn heatmap.svg".
+
+-output4/-o4
+    
+	Set the name of output SVG format file4, default "GenomeSyn identity.svg".
+
+-output5/-o5
+    
+	Set the name of output SVG format file5, default "GenomeSyn coverage.svg".
+
+-output6/-o6
+    
+	Set the name of output SVG format file6, default "GenomeSyn heatmap2.svg".
+
+-headline_identity/-headline1
+    
+	Set the title of illustration1, default output is "GenomeSyn identity".
+
+-headline_coverage/-headline2
+    
+	Set the title of illustration2, default output is "GenomeSyn coverage".
+
+-headline_heatmap/-headline3
+    
+	Set the title of illustration3, default output is "GenomeSyn heatmap".
+
+-genome1_color/-color1/-c1
+    
+	Set the drawing color of the chromosome in genome1,default color is LightBlue (#3979BC), recommended to input in hexadecimal color code or RGB code, eg. "#3979BC"/"rgb(57,121,188)".
+
+-genome2_color/-color2/-c2
+    
+	Set the drawing color of the chromosome in genome2,default color is Green(#499272), recommended to input in hexadecimal color code or RGB code, eg. "#499272"/"rgb(73,146,114)".
+
+-genome3_color/-color3/-c3
+    
+	Set the drawing color of the chromosome in genome3, default color is DarkBlue(#447784), recommended to input in hexadecimal color code or RGB code, eg. "#447784"/"rgb(68,119,132)".
+
+-synteny_color/-color4/-c4
+    
+	Set the drawing color of the synteny blocks, default color is LightGray(#DFDFE1), recommended to input in hexadecimal color code or RGB code, eg. "#DFDFE1"/"rgb(223,223,225)".
+
+-inversion_color/-color5/-c5
+    
+	Set the drawing color of the inversion blocks, default color is DarkOrange(#E56C1A), recommended to input in hexadecimal color code or RGB code, eg. "#E56C1A"/"rgb(229,108,26)".
+
+-translocation_color/-color6/-c6
+    
+	Set the drawing color of the translocation blocks, default color is Saffron(#EFCF48), recommended to input in hexadecimal color code or RGB code, eg. "#EFCF48"/"rgb(239,207,72)".
+
+-centromere_color/-color7/-c7
+    
+	Set the drawing color of the centromere blocks, default color is Orange(#E4993F), recommended to input in hexadecimal color code or RGB code, eg. "#E4993F"/"rgb(228,153,63)".
+
+-telomere_color/-color8/-c8
+    
+	Set the drawing color of the telomere blocks, default color is Purple(#441680), recommended to input in hexadecimal color code or RGB code, eg. "#441680"/"rgb(68,22,128)".
+
+-PAV_color/-color9/-c9
+    
+	Set the drawing color of PAVs, default color is LightYellow(#F9F067), recommended to input in hexadecimal color code or RGB code, eg. "#F9F067"/"rgb(249,240,103)".
+
+-NLR_color/-color10/-c10
+    
+	Set the drawing color of the NLRs, default color is Cyan(#00FFFF), recommended to input in hexadecimal color code or RGB code, eg. "#00FFFF"/"rgb(0,255,255)".
+
+-SNP_color/-color11/-c11
+    
+	Set the drawing color of the SNPs, default color is DoderBlue(#1E90FF), recommended to input in hexadecimal color code or RGB code, eg. "#1E90FF"/"rgb(30,144,255)".
+
+-TE_color/-color12/-c12
+    
+	Set the drawing color of the TEs, default color is DoderBlue(#1E90FF), recommended to input in hexadecimal color code or RGB code, eg. "#1E90FF"/"rgb(30,144,255)". TE has two forms of display, when it is displayed as a histogram only, the drawing color of TE can be adjusted.
+
+-genedensity_color/-color13/-c13
+    
+	Set the drawing color of the gene density, default color is DarkGreen(#368F5C), recommended to input in hexadecimal color code or RGB code, eg. "#368F5C"/"rgb(54,143,92)".
+
+-targetgene_color/-color14/-c14
+    
+	Set the drawing color of the target gene, default color is Crimson(#DC143C), recommended to input in hexadecimal color code or RGB code, eg. "#DC143C"/"rgb(220,20,60)".
+
+-curveto/-curve
+    
+	Draw synteny blocks with curve or straight line, value is 1/0, default true(1), that is default output as a curve.
+
+-highlightinversion/-highlight
+    
+	Highlight inversion, value is 1/0, default true(1), that is default the inverted information is highlighted.
+
+-help/-h/?
+    
+	Print a brief help message and exits.
+
+-man
+    
+	Prints the manual page and exits.
+
+```
+
+## Contact us
+Name Email
+Jia-Ming Song	jmsong@gxu.edu.cn
+Zu-Wen Zhou	zwzhou@st.gxu.edu.cn
