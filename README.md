@@ -23,7 +23,7 @@ $ export PATH=/your_path/GenomeSyn/mummer-4.0.0beta2:$PATH
 
 2. Perl and perl module we recommend that the version of perl should be at least 5.10.0 (use perl -v to check the version). Although most of the GenomeSyn modules used already exist, you may still need to install the SVG module and the BioPerl module. Due to the lack of administrator rights, it is sometimes troublesome to install perl modules under Linux systems. This page introduces two installations of the [SVG](https://cpan.metacpan.org/authors/id/M/MA/MANWAR/SVG-2.85.tar.gz "SVG") module and three installations [BioPerl] (https://cpan.metacpan.org/authors/id/C/CJ/CJFIELDS/BioPerl-1.7.8.tar.gz "BioPerl") module method, but in fact cpanm is the most friendly installation perl module method. You can find the pre-compiled source code of cpanm here [page](https://bioperl.org/INSTALL.html). There are SVG and BioPerl compressed packages in our GenomeSyn, which can be installed and used after decompression. 
 
-# install SVG 
+### install SVG 
 
 $ cpanm SVG 
 
@@ -37,7 +37,7 @@ $ make test
 # Add SVG to your PATH
 $ PERL5LIB=/your_path/GenomeSyn/SVG-2.85/lib:$PERL5LIB 
 
-# install BioPerl 
+### install BioPerl 
 
 $ cpanm Bio::SeqIO 
 
@@ -49,7 +49,7 @@ $ perl Makefile.PL
 $ make 
 $ make test 
 
-# Add Perl module to your PATH 
+### Add Perl module to your PATH 
 
 $ PERL5LIB=/your_path/GenomeSyn/BioPerl-1.7.8/lib:$PERL5LIB 
 
