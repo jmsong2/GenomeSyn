@@ -1,0 +1,429 @@
+#!/usr/bin/env perl 
+use strict;
+use warnings;
+use Bio::SeqIO;
+use Getopt::Long;
+use Pod::Usage;
+Getopt::Long::Configure("bundling");
+
+my $inputFile1="";
+my $inputFile2="";
+my $outputFile1="";
+my $outputFile2="";
+my $point=".";
+my $outtype='';
+my $out_num1;
+my $out_num2;
+my $prefix1="";
+my $prefix2="";
+my $suffix1=".coords";
+my $suffix2=".bed";
+my $count1=0;
+my $count2=0;
+my $man=0;
+my $help=0;
+my $inputFile3="";
+my $outputFile3_1="";
+my $outputFile3_2="";
+my $genomeSeq1="";
+my $genomeSeq2="";
+my $reference='';
+my $query=1;
+my @Chrname1;
+my @Chrname2;
+my %chr_length1;
+my %chr_length2;
+my $prefix3;
+my $out_num3;
+my $inputFile4="";
+my $outputFile4="Query_PAV.bed";
+my $outputFileX="";
+
+GetOptions( 
+             'PAFtoCOORDS|PAF=s' =>\$inputFile1,
+			 'GFF3toBED|GFFtoBED|GFF3|GFF=s' =>\$inputFile2,
+			 'type=s'=>\$outtype,
+			 'SNP=s' =>\$inputFile3,
+			 'PAV=s' =>\$inputFile4,
+			 'outputfile|out|o=s' =>\$outputFileX,
+			 'genomeSeq1|1=s'=>\$genomeSeq1,
+             'genomeSeq2|2=s'=>\$genomeSeq2,
+			 'reference|r'=>\$reference,
+			 'query|q!'=>\$query,
+             'help|h'   =>\$help,
+               man      =>\$man ) or pod2usage(2);
+pod2usage(1) if ($help);
+pod2usage(-exitval=> 0,-verbose => 2) if ($man);
+pod2usage("$0: No files given.") if ( ( length("$inputFile1")==0 ) and ( length("$inputFile2")==0 ) and ( length("$inputFile3")==0 ) and ( length("$inputFile4")==0 ) );
+pod2usage("$0: File format error.\nPlease enter the .PAF format file!\n") if ( ( length("$inputFile1")!=0 ) and ((substr($inputFile1,-4,4) ne ".PAF") and (substr($inputFile1,-4,4) ne ".paf")) );
+pod2usage("$0: File format error.\nPlease enter the .gff3(.gff) format file!\n") if ( ( length("$inputFile2")!=0 ) and ((substr($inputFile2,-4,4) ne ".gff") and (substr($inputFile2,-4,4) ne ".GFF") and (substr($inputFile2,-5,5) ne ".gff3") and (substr($inputFile2,-5,5) ne ".GFF3")) );
+pod2usage("$0: Not entered for .fasta(.fa) format file!\n") if ( ( length("$inputFile3")!=0 ) and (( length("$genomeSeq1")==0 ) and ( length("$genomeSeq2")==0 )) );
+pod2usage("$0: Missing .fasta(.fa) format file!\n") if ( ( length("$inputFile3")!=0 ) and (( length("$genomeSeq1")==0 ) or ( length("$genomeSeq2")==0 )) );
+pod2usage("$0: File format error.\nPlease enter the .PAF format file!\n") if ( ( length("$inputFile3")!=0 ) and ((substr($inputFile3,-5,5) ne ".SNPS") and (substr($inputFile3,-5,5) ne ".snps")) );
+pod2usage("$0: File format error.\nPlease enter the .fasta(.fa) format file!\n") if (( length("$inputFile3")!=0 ) and ((substr($genomeSeq1,-3,3) ne ".fa") and (substr($genomeSeq1,-3,3) ne ".FA") and (substr($genomeSeq1,-6,6) ne ".fasta") and (substr($genomeSeq1,-6,6) ne ".FASTA")) and ((substr($genomeSeq2,-3,3) ne ".fa") and (substr($genomeSeq2,-3,3) ne ".FA") and (substr($genomeSeq2,-6,6) ne ".fasta") and (substr($genomeSeq2,-6,6) ne ".FASTA")) );
+pod2usage("$0: File format error.\nPlease enter the .PAF format file!\n") if ( ( length("$inputFile4")!=0 ) and ((substr($inputFile4,-6,6) ne ".QDIFF") and (substr($inputFile4,-6,6) ne ".qdiff")) );
+
+###.PAF
+if(( length("$inputFile1")!=0 ))
+{
+	 if((length($outputFileX)==0))
+	 {
+		 $out_num1=length("$inputFile1")-4;
+		 $prefix1=substr($inputFile1,0,$out_num1);
+		 $outputFile1="$prefix1"."$suffix1";
+	 }
+	 else
+	 {
+	     $outputFile1="$outputFileX"."$suffix1";
+	 }
+	 open FL1,"$inputFile1";
+	 while(<FL1>)
+	{
+		 chomp;
+		 my @tem = split /\t/;
+		 if($count1==0)
+		{
+			 open OUT1,">$outputFile1";
+		}
+		 my $balance1=$tem[8]-$tem[7]+1;
+		 my $balance2=$tem[3]-$tem[2]+1;
+		 my $identity=$tem[9]/$tem[10];
+		 print OUT1 "$tem[7]\t$tem[8]\t$tem[2]\t$tem[3]\t$balance1\t$balance2\t$identity\t$tem[6]\t$tem[1]\t$point\t$point\t$tem[5]\t$tem[0]\n";
+		 $count1++;
+	}
+	 close FL1;
+	 close OUT1;
+}
+####.gff3
+if(( length("$inputFile2")!=0 ))
+{
+	 if((length($outputFileX)==0))
+	 {
+		 if((substr($inputFile2,-4,4) eq ".gff") or (substr($inputFile2,-4,4) eq ".GFF")){$out_num2=length("$inputFile2")-4;}
+		 if((substr($inputFile2,-5,5) eq ".gff3") or (substr($inputFile2,-5,5) eq ".GFF3")){$out_num2=length("$inputFile2")-5;}
+		 $prefix2=substr($inputFile2,0,$out_num2);
+		 $outputFile2="$prefix2"."$suffix2";
+	 }
+	 else
+	 {
+	     $outputFile2="$outputFileX"."$suffix2";
+	 }
+	 open FL2,"$inputFile2";
+	 while(<FL2>)
+	{
+		 chomp;
+		 my @tem = split /\t/;
+		 if($count2==0)
+		{
+			 open OUT2,">$outputFile2";
+			 print OUT2 "seqnames\tstart\tend\tscore\ttype\n";
+			 $count2++;
+		}
+		 if((length($outtype)==0))
+		 {
+		     my $end_startx=$tem[4]-$tem[3];
+			 print OUT2 "$tem[0]\t$tem[3]\t$tem[4]\t$end_startx\t$tem[2]\n";
+		 }		 
+		 elsif($outtype eq $tem[2])
+		 {
+		     my $end_startx=$tem[4]-$tem[3];
+			 print OUT2 "$tem[0]\t$tem[3]\t$tem[4]\t$end_startx\t$tem[2]\n";
+		 }
+	}
+	 close FL2;
+	 close OUT2;
+}
+####snp####.snps=>.bed
+if(( length("$inputFile3")!=0 ) and ( length("$genomeSeq1")!=0 ) and ( length("$genomeSeq2")!=0 ))
+{
+	 my $chrin= Bio::SeqIO->new(-file=>"$genomeSeq1");
+	 my $chrin2= Bio::SeqIO->new(-file=>"$genomeSeq2");
+	 while(my $seq = $chrin->next_seq())
+	 {
+		 my $Chrname=$seq->id();
+		 push(@Chrname1,$Chrname);
+		 $chr_length1{$seq->id()} = $seq->length();
+	 }
+	 while(my $seq = $chrin2->next_seq())
+	 {
+		  my $Chrname=$seq->id();
+		 push(@Chrname2,$Chrname);
+		 $chr_length2{$seq->id()} = $seq->length();
+	 }
+	 my $targetChrnum1=scalar(@Chrname1);
+	 my $targetChrnum2=scalar(@Chrname2);
+	 my @ChrnumMAX1=($targetChrnum1,$targetChrnum2);  
+	 @ChrnumMAX1=sort{$a<=>$b}(@ChrnumMAX1);   
+	 my $targetChrnumMIN1=$ChrnumMAX1[0];
+     #####query#snp
+     if($query)	 	 
+	 {
+		 if((length("$outputFileX")==0))
+		 {
+			 if((substr($genomeSeq2,-3,3) eq ".fa") or (substr($genomeSeq2,-3,3) eq ".FA")){$out_num3=length("$genomeSeq2")-3;}
+			 if((substr($genomeSeq2,-6,6) eq ".fasta") or (substr($genomeSeq2,-6,6) eq ".FASTA")){$out_num3=length("$genomeSeq2")-6;}
+			 $prefix3=substr($genomeSeq2,0,$out_num3);
+			 $outputFile3_2="$prefix3"."_snps"."$suffix2";
+		 }
+		 else
+		 {
+		     $outputFile3_2="$outputFileX"."_snps"."$suffix2";
+		 }
+		 my %hash_snp;
+		 for(my $addd=0;$addd<$targetChrnumMIN1;$addd++)
+		 {	 
+			 my $SNP_num1_key;
+			 my $SNP_num1=$chr_length2{$Chrname2[$addd]}/100000;
+			 for(my $axxxxx=0;$axxxxx<$SNP_num1;$axxxxx++)
+			 {
+				 $SNP_num1_key="$Chrname2[$addd]"."!"."$axxxxx";
+			 }
+			 $hash_snp{$SNP_num1_key}=0;
+		 }
+		 for(my $addd=0;$addd<$targetChrnumMIN1;$addd++)
+		 {	 
+			 open FLSV1,"$inputFile3";
+			 while(<FLSV1>)
+			 {
+				 chomp;	
+				 my @tem = split /\t/;
+				 my $count_snpxx=scalar(@tem);
+				 if(($count_snpxx == 12) and ($Chrname1[$addd] eq $tem[10]) and ($Chrname2[$addd] eq $tem[11]))
+				 {
+					 my $SNP_num1=$tem[3]/100000;
+					 $SNP_num1=int($SNP_num1);
+					 my $SNP_num1_key="$Chrname2[$addd]"."!"."$SNP_num1";
+					 $hash_snp{$SNP_num1_key}+=1;
+				 }
+			 }
+			 close FLSV1;
+		 }
+		 open FLSVout1,">$outputFile3_2";
+		 print FLSVout1 "seqnames\tstart\tend\tscore\ttype\n";
+		 my $key_snp;
+		 my $value_snp;
+		 for(my $addd=0;$addd<$targetChrnumMIN1;$addd++)
+		 {
+			 my %hash_snp_sub;
+			 foreach $key_snp(sort{$a cmp $b} keys %hash_snp)
+			 {
+				 $value_snp=$hash_snp{$key_snp};
+				 if($key_snp=~/!/p)
+				 {
+					 if($Chrname2[$addd] eq ${^PREMATCH})
+					 {
+						 my $start_snp=${^POSTMATCH};
+						 $hash_snp_sub{$start_snp}=$value_snp;
+					 }
+				 }
+			 }
+			 foreach $key_snp(sort{$a <=> $b} keys %hash_snp_sub)
+			 {
+				 $value_snp=$hash_snp_sub{$key_snp};
+				 my $start_snp=$key_snp*100000;
+				 my $end_snp=$start_snp+100000;
+				 if($end_snp>$chr_length2{$Chrname2[$addd]}){$end_snp=$chr_length2{$Chrname2[$addd]};}
+				 print FLSVout1 "$Chrname2[$addd]\t$start_snp\t$end_snp\t$value_snp\tSNP\n";
+			 }
+		 }		 
+		 close FLSVout1;
+     }
+     #####reference#snp
+     if($reference)	 	 
+	 {
+		 if((length("$outputFileX")==0))
+		 {
+			 if((substr($genomeSeq1,-3,3) eq ".fa") or (substr($genomeSeq1,-3,3) eq ".FA")){$out_num3=length("$genomeSeq1")-3;}
+			 if((substr($genomeSeq1,-6,6) eq ".fasta") or (substr($genomeSeq1,-6,6) eq ".FASTA")){$out_num3=length("$genomeSeq1")-6;}
+			 $prefix3=substr($genomeSeq1,0,$out_num3);
+			 $outputFile3_1="$prefix3"."_snps"."$suffix2";
+		 }
+		 else
+		 {
+		     $outputFile3_1="$outputFileX"."_snps"."$suffix2";
+		 }
+		 my %hash_snp;
+		 for(my $addd=0;$addd<$targetChrnumMIN1;$addd++)
+		 {	 
+			 my $SNP_num1_key;
+			 my $SNP_num1=$chr_length1{$Chrname1[$addd]}/100000;
+			 for(my $axxxxx=0;$axxxxx<$SNP_num1;$axxxxx++)
+			 {
+				 $SNP_num1_key="$Chrname1[$addd]"."!"."$axxxxx";
+			 }
+			 $hash_snp{$SNP_num1_key}=0;
+		 }
+		 for(my $addd=0;$addd<$targetChrnumMIN1;$addd++)
+		 {	 
+			 open FLSV1,"$inputFile3";
+			 while(<FLSV1>)
+			 {
+				 chomp;	
+				 my @tem = split /\t/;
+				 my $count_snpxx=scalar(@tem);
+				 if(($count_snpxx == 12) and ($Chrname1[$addd] eq $tem[10]) and ($Chrname2[$addd] eq $tem[11]))
+				 {
+					 my $SNP_num1=$tem[0]/100000;
+					 $SNP_num1=int($SNP_num1);
+					 my $SNP_num1_key="$Chrname1[$addd]"."!"."$SNP_num1";
+					 $hash_snp{$SNP_num1_key}+=1;
+				 }
+			 }
+			 close FLSV1;
+		 }
+		 open FLSVout1,">$outputFile3_1";
+		 print FLSVout1 "seqnames\tstart\tend\tscore\ttype\n";
+		 my $key_snp;
+		 my $value_snp;
+		 for(my $addd=0;$addd<$targetChrnumMIN1;$addd++)
+		 {
+			 my %hash_snp_sub;
+			 foreach $key_snp(sort{$a cmp $b} keys %hash_snp)
+			 {
+				 $value_snp=$hash_snp{$key_snp};
+				 if($key_snp=~/!/p)
+				 {
+					 if($Chrname1[$addd] eq ${^PREMATCH})
+					 {
+						 my $start_snp=${^POSTMATCH};
+						 $hash_snp_sub{$start_snp}=$value_snp;
+					 }
+				 }
+			 }
+			 foreach $key_snp(sort{$a <=> $b} keys %hash_snp_sub)
+			 {
+				 $value_snp=$hash_snp_sub{$key_snp};
+				 my $start_snp=$key_snp*100000;
+				 my $end_snp=$start_snp+100000;
+				 if($end_snp>$chr_length1{$Chrname1[$addd]}){$end_snp=$chr_length1{$Chrname1[$addd]};}
+				 print FLSVout1 "$Chrname1[$addd]\t$start_snp\t$end_snp\t$value_snp\tSNP\n";
+			 }
+		 }		 
+		 close FLSVout1;
+     }
+}
+####PAV####.qdiff=>.bed
+if((length("$inputFile4")!=0))
+{
+	 if((length("$outputFileX")!=0))
+	 {
+	     $outputFile4="$outputFileX"."_PAV"."$suffix2";
+	 }
+	 open FLPAV2,"$inputFile4";
+	 open FLPAVout2,">$outputFile4";
+	 print FLPAVout2 "seqnames\tstart\tend\tscore\ttype\n";
+	 while(<FLPAV2>)
+	 {
+		 chomp;	
+		 my @tem = split /\t/;
+		 my $count_pavxx=scalar(@tem);
+		 if(($count_pavxx == 7) and ($tem[1] eq "GAP") and ($tem[4] >= 99))
+		 {
+             print FLPAVout2 "$tem[0]\t$tem[2]\t$tem[3]\t$tem[4]\tPAV\n";
+		 }
+	 }
+	 close FLPAV2;
+}
+
+
+
+
+print "\n--OK!--\n\n";
+
+###############################################################################
+# Help Documentation
+###############################################################################
+
+=head1 NAME
+
+Transform - GenomeSyn的辅助脚本，功能详见"DESCRIPTION"。
+
+=head1 SYNOPSIS
+
+Transform [options]
+
+example:
+
+    a) Transform --PAF example.PAF
+
+    b) Transform --GFF3 example.gff3
+
+    c) Transform -1 rice_MH63.fa -2 rice_R498.fasta --SNP MH63vsR498.delta.filter.snps
+	
+    d) Transform -1 rice_MH63.fa -2 rice_R498.fasta --SNP MH63vsR498.delta.filter.snps -r
+	
+    e) Transform -1 rice_MH63.fa -2 rice_R498.fasta --SNP MH63vsR498.delta.filter.snps -rq
+	
+    f) Transform -1 rice_MH63.fa -2 rice_R498.fasta --SNP MH63vsR498.delta.filter.snps --noquery -r
+    
+    g) Transform --PAV MH63vsR498.delta.filter.qdiff -o MH63vsR498
+  
+=head1 OPTIONS
+
+=over 8
+
+=item B<--PAFtoCOORDS/--PAF>
+
+Enter a .PAF format file to generate a .coords format file.
+
+=item B<--PAV>
+
+Enter a .qdiff format file to generate a .bed format file.
+
+=item B<--GFF3toBED/--GFFtoBED/--GFF3/--GFF>
+
+Enter a .gff3 format file to generate a .bed format file.
+
+=item B<--type>
+
+将.GFF3格式转成.bed格式时的辅助参数，可以指定输出类型(eg.gene)，默认全部输出。
+
+=item B<--SNP>
+
+Enter a .snps format file to generate a .bed format file.
+
+=item B<--genomeSeq1/-1>
+
+Input the genome1 fasta file to obtain the length of each chromosome in the genome1(ie reference genome).
+
+=item B<--genomeSeq2/-2>
+
+Input the genome2 fasta file to obtain the length of each chromosome in the genome2(ie query genome).
+
+=item B<--query/-q/--noquery>
+
+参照于reference基因组，以.bed格式文件输出query的SNP信息或者PAV信息,默认值为输出；当参数设置为--noquery时，则不输出query的SNP信息或者PAV信息。
+
+=item B<--reference/-r>
+
+参照于query基因组，以.bed格式文件输出reference的SNP信息或者PAV信息,默认值为不输出；
+
+=item B<--outputfile/--out/-o>
+
+设置输出文件名称，不需后缀名，会根据执行程序自动添加后缀。
+
+=item B<--help/-h>
+
+Print a brief help message and exits.
+
+=item B<--man>
+
+Prints the manual page and exits.
+
+=back
+
+=head1 DESCRIPTION
+
+B<Transform:> 
+
+Transform是GenomeSyn的辅助脚本，共有四个功能:
+
+1.transform .PAF format to .coords format file;(PAF,https://github.com/lh3/miniasm/blob/master/PAF.md)
+
+2.将.GFF3(.GFF) 格式转换成.bed格式的文件；
+
+3.将mummer生成的.snps格式文件(GenomeSyn调用)转换成容易读取信息的.bed格式文件；
+
+4.将mummer生成的.qdiff格式文件(GenomeSyn调用)转换成容易读取信息的.bed格式文件。
+
+=cut
