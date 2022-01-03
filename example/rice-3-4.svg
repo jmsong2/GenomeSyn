@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg height="1600" width="1825" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<text style="font-size:  20; stroke: none" x="780" y="88">GenomeSyn identity</text>
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="100" y1="600" y2="100" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="1800" y1="600" y2="600" />
+	<polygon points="97,100 103,100 100,97" style="fill: #000000; stroke: #000000; stroke-width: 0.1" />
+	<polygon points="1800,597 1800,603 1805,600" style="fill: #000000; stroke: #000000; stroke-width: 0.1" />
+	<rect height="25" style="fill: #3979BC; rx: 5; ry: 5; stroke: #3979BC; stroke-width: 1" width="25" x="1630" y="100" />
+	<text style="font-size: 15; stroke: none" x="1665" y="115">MH63</text>
+	<rect height="25" style="fill: #499272; rx: 5; ry: 5; stroke: #499272; stroke-width: 1" width="25" x="1630" y="135" />
+	<text style="font-size: 15; stroke: none" x="1665" y="150">ZS97</text>
+	<text style="font-size: 10; stroke: none" x="70" y="605">0%</text>
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="105" y1="600" y2="600" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="590" y2="590" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="580" y2="580" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="570" y2="570" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="560" y2="560" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="550" y2="550" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="540" y2="540" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="530" y2="530" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="520" y2="520" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="510" y2="510" />
+	<text style="font-size: 10; stroke: none" x="70" y="505">25%</text>
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="105" y1="500" y2="500" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="490" y2="490" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="480" y2="480" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="470" y2="470" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="460" y2="460" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="450" y2="450" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="440" y2="440" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="430" y2="430" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="420" y2="420" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="410" y2="410" />
+	<text style="font-size: 10; stroke: none" x="70" y="405">50%</text>
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="105" y1="400" y2="400" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="390" y2="390" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="380" y2="380" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="370" y2="370" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="360" y2="360" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="350" y2="350" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="340" y2="340" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="330" y2="330" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="320" y2="320" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="310" y2="310" />
+	<text style="font-size: 10; stroke: none" x="70" y="305">75%</text>
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="105" y1="300" y2="300" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="290" y2="290" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="280" y2="280" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="270" y2="270" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="260" y2="260" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="250" y2="250" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="240" y2="240" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="230" y2="230" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="220" y2="220" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="210" y2="210" />
+	<text style="font-size: 10; stroke: none" x="70" y="205">100%</text>
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="105" y1="200" y2="200" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="190" y2="190" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="180" y2="180" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="170" y2="170" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="160" y2="160" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="150" y2="150" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="140" y2="140" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="130" y2="130" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="120" y2="120" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="110" y2="110" />
+	<text style="font-size: 15; stroke: none" x="143" y="620">Chr01</text>
+	<rect height="323.329186638193" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="125" y="276.670813361807" />
+	<text style="font-size: 10; stroke: none" x="122" y="271.670813361807">80.83%</text>
+	<rect height="325.300506394981" style="fill: #499272; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="175" y="274.699493605019" />
+	<text style="font-size: 10; stroke: none" x="173" y="269.699493605019">81.33%</text>
+	<text style="font-size: 15; stroke: none" x="268" y="620">Chr02</text>
+	<rect height="355.831560922913" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="250" y="244.168439077087" />
+	<text style="font-size: 10; stroke: none" x="247" y="239.168439077087">88.96%</text>
+	<rect height="356.144707733082" style="fill: #499272; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="300" y="243.855292266918" />
+	<text style="font-size: 10; stroke: none" x="298" y="238.855292266918">89.04%</text>
+	<text style="font-size: 15; stroke: none" x="393" y="620">Chr03</text>
+	<rect height="339.950838303409" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="375" y="260.049161696591" />
+	<text style="font-size: 10; stroke: none" x="372" y="255.049161696591">84.99%</text>
+	<rect height="342.160484660447" style="fill: #499272; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="425" y="257.839515339553" />
+	<text style="font-size: 10; stroke: none" x="423" y="252.839515339553">85.54%</text>
+	<text style="font-size: 15; stroke: none" x="518" y="620">Chr04</text>
+	<rect height="316.304777811788" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="500" y="283.695222188212" />
+	<text style="font-size: 10; stroke: none" x="497" y="278.695222188212">79.08%</text>
+	<rect height="316.916518162551" style="fill: #499272; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="550" y="283.083481837449" />
+	<text style="font-size: 10; stroke: none" x="548" y="278.083481837449">79.23%</text>
+	<text style="font-size: 15; stroke: none" x="643" y="620">Chr05</text>
+	<rect height="366.253633563777" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="625" y="233.746366436223" />
+	<text style="font-size: 10; stroke: none" x="622" y="228.746366436223">91.56%</text>
+	<rect height="372.447600062275" style="fill: #499272; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="675" y="227.552399937725" />
+	<text style="font-size: 10; stroke: none" x="673" y="222.552399937725">93.11%</text>
+	<text style="font-size: 15; stroke: none" x="768" y="620">Chr06</text>
+	<rect height="317.114079116123" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="750" y="282.885920883877" />
+	<text style="font-size: 10; stroke: none" x="747" y="277.885920883877">79.28%</text>
+	<rect height="315.143211796048" style="fill: #499272; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="800" y="284.856788203952" />
+	<text style="font-size: 10; stroke: none" x="798" y="279.856788203952">78.79%</text>
+	<text style="font-size: 15; stroke: none" x="893" y="620">Chr07</text>
+	<rect height="365.003171285153" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="875" y="234.996828714847" />
+	<text style="font-size: 10; stroke: none" x="872" y="229.996828714847">91.25%</text>
+	<rect height="365.429980982829" style="fill: #499272; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="925" y="234.570019017171" />
+	<text style="font-size: 10; stroke: none" x="923" y="229.570019017171">91.36%</text>
+	<text style="font-size: 15; stroke: none" x="1018" y="620">Chr08</text>
+	<rect height="312.684939300418" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1000" y="287.315060699582" />
+	<text style="font-size: 10; stroke: none" x="997" y="282.315060699582">78.17%</text>
+	<rect height="315.044000647353" style="fill: #499272; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1050" y="284.955999352647" />
+	<text style="font-size: 10; stroke: none" x="1048" y="279.955999352647">78.76%</text>
+	<text style="font-size: 15; stroke: none" x="1143" y="620">Chr09</text>
+	<rect height="274.347359229143" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1125" y="325.652640770857" />
+	<text style="font-size: 10; stroke: none" x="1122" y="320.652640770857">68.59%</text>
+	<rect height="297.067694388924" style="fill: #499272; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1175" y="302.932305611076" />
+	<text style="font-size: 10; stroke: none" x="1173" y="297.932305611076">74.27%</text>
+	<text style="font-size: 15; stroke: none" x="1268" y="620">Chr10</text>
+	<rect height="284.099229265716" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1250" y="315.900770734284" />
+	<text style="font-size: 10; stroke: none" x="1247" y="310.900770734284">71.02%</text>
+	<rect height="282.92700625493" style="fill: #499272; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1300" y="317.07299374507" />
+	<text style="font-size: 10; stroke: none" x="1298" y="312.07299374507">70.73%</text>
+	<text style="font-size: 15; stroke: none" x="1393" y="620">Chr11</text>
+	<rect height="218.146600439054" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1375" y="381.853399560946" />
+	<text style="font-size: 10; stroke: none" x="1372" y="376.853399560946">54.54%</text>
+	<rect height="228.014000235223" style="fill: #499272; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1425" y="371.985999764777" />
+	<text style="font-size: 10; stroke: none" x="1423" y="366.985999764777">57.00%</text>
+	<text style="font-size: 15; stroke: none" x="1518" y="620">Chr12</text>
+	<rect height="283.943685474857" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1500" y="316.056314525143" />
+	<text style="font-size: 10; stroke: none" x="1497" y="311.056314525143">70.99%</text>
+	<rect height="280.896655902663" style="fill: #499272; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1550" y="319.103344097337" />
+	<text style="font-size: 10; stroke: none" x="1548" y="314.103344097337">70.22%</text>
+	<text style="font-size:  20; stroke: none" x="780" y="888">GenomeSyn identity</text>
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="100" y1="1400" y2="900" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="1800" y1="1400" y2="1400" />
+	<polygon points="97,900 103,900 100,897" style="fill: #000000; stroke: #000000; stroke-width: 0.1" />
+	<polygon points="1800,1397 1800,1403 1805,1400" style="fill: #000000; stroke: #000000; stroke-width: 0.1" />
+	<rect height="25" style="fill: #3979BC; rx: 5; ry: 5; stroke: #3979BC; stroke-width: 1" width="25" x="1630" y="900" />
+	<text style="font-size: 15; stroke: none" x="1665" y="915">MH63</text>
+	<rect height="25" style="fill: #447784; rx: 5; ry: 5; stroke: #447784; stroke-width: 1" width="25" x="1630" y="935" />
+	<text style="font-size: 15; stroke: none" x="1665" y="950">R498</text>
+	<text style="font-size: 10; stroke: none" x="70" y="1405">0%</text>
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="105" y1="1400" y2="1400" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1390" y2="1390" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1380" y2="1380" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1370" y2="1370" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1360" y2="1360" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1350" y2="1350" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1340" y2="1340" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1330" y2="1330" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1320" y2="1320" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1310" y2="1310" />
+	<text style="font-size: 10; stroke: none" x="70" y="1305">25%</text>
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="105" y1="1300" y2="1300" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1290" y2="1290" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1280" y2="1280" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1270" y2="1270" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1260" y2="1260" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1250" y2="1250" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1240" y2="1240" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1230" y2="1230" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1220" y2="1220" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1210" y2="1210" />
+	<text style="font-size: 10; stroke: none" x="70" y="1205">50%</text>
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="105" y1="1200" y2="1200" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1190" y2="1190" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1180" y2="1180" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1170" y2="1170" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1160" y2="1160" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1150" y2="1150" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1140" y2="1140" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1130" y2="1130" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1120" y2="1120" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1110" y2="1110" />
+	<text style="font-size: 10; stroke: none" x="70" y="1105">75%</text>
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="105" y1="1100" y2="1100" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1090" y2="1090" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1080" y2="1080" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1070" y2="1070" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1060" y2="1060" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1050" y2="1050" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1040" y2="1040" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1030" y2="1030" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1020" y2="1020" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="1010" y2="1010" />
+	<text style="font-size: 10; stroke: none" x="70" y="1005">100%</text>
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="105" y1="1000" y2="1000" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="990" y2="990" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="980" y2="980" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="970" y2="970" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="960" y2="960" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="950" y2="950" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="940" y2="940" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="930" y2="930" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="920" y2="920" />
+	<line style="stroke: black; stroke-width: 1" x1="100" x2="102" y1="910" y2="910" />
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1092.47997693322" y="915.70328163658">Chr01</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1127.83531599254" y="880.347942577253">Chr1</text>
+	<rect height="385.954771781265" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="125" y="1014.04522821873" />
+	<text style="font-size: 10; stroke: none" x="122" y="1009.04522821873">96.49%</text>
+	<rect height="391.690648965087" style="fill: #447784; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="175" y="1008.30935103491" />
+	<text style="font-size: 10; stroke: none" x="173" y="1003.30935103491">97.92%</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1180.86832458153" y="827.314933988262">Chr02</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1216.22366364086" y="791.959594928934">Chr2</text>
+	<rect height="367.61216907648" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="250" y="1032.38783092352" />
+	<text style="font-size: 10; stroke: none" x="247" y="1027.38783092352">91.90%</text>
+	<rect height="363.089262438352" style="fill: #447784; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="300" y="1036.91073756165" />
+	<text style="font-size: 10; stroke: none" x="298" y="1031.91073756165">90.77%</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1269.25667222985" y="738.926586339943">Chr03</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1304.61201128918" y="703.571247280616">Chr3</text>
+	<rect height="383.176112512058" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="375" y="1016.82388748794" />
+	<text style="font-size: 10; stroke: none" x="372" y="1011.82388748794">95.79%</text>
+	<rect height="385.06263181352" style="fill: #447784; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="425" y="1014.93736818648" />
+	<text style="font-size: 10; stroke: none" x="423" y="1009.93736818648">96.27%</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1357.64501987817" y="650.538238691625">Chr04</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1393.0003589375" y="615.182899632298">Chr4</text>
+	<rect height="353.116761035775" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="500" y="1046.88323896422" />
+	<text style="font-size: 10; stroke: none" x="497" y="1041.88323896422">88.28%</text>
+	<rect height="367.553866232529" style="fill: #447784; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="550" y="1032.44613376747" />
+	<text style="font-size: 10; stroke: none" x="548" y="1027.44613376747">91.89%</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1446.03336752649" y="562.149891043307">Chr05</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1481.38870658582" y="526.794551983979">Chr5</text>
+	<rect height="366.826392390455" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="625" y="1033.17360760954" />
+	<text style="font-size: 10; stroke: none" x="622" y="1028.17360760954">91.71%</text>
+	<rect height="367.606386110216" style="fill: #447784; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="675" y="1032.39361388978" />
+	<text style="font-size: 10; stroke: none" x="673" y="1027.39361388978">91.90%</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1534.42171517481" y="473.761543394988">Chr06</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1569.77705423413" y="438.406204335661">Chr6</text>
+	<rect height="355.932694217444" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="750" y="1044.06730578256" />
+	<text style="font-size: 10; stroke: none" x="747" y="1039.06730578256">88.98%</text>
+	<rect height="349.937964037623" style="fill: #447784; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="800" y="1050.06203596238" />
+	<text style="font-size: 10; stroke: none" x="798" y="1045.06203596238">87.48%</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1622.81006282313" y="385.37319574667">Chr07</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1658.16540188245" y="350.017856687342">Chr7</text>
+	<rect height="392.47961076102" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="875" y="1007.52038923898" />
+	<text style="font-size: 10; stroke: none" x="872" y="1002.52038923898">98.12%</text>
+	<rect height="400.191493266673" style="fill: #447784; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="925" y="999.808506733327" />
+	<text style="font-size: 10; stroke: none" x="923" y="994.808506733327">100.05%</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1711.19841047144" y="296.984848098351">Chr08</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1746.55374953077" y="261.629509039024">Chr8</text>
+	<rect height="385.054339288651" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1000" y="1014.94566071135" />
+	<text style="font-size: 10; stroke: none" x="997" y="1009.94566071135">96.26%</text>
+	<rect height="391.90908200697" style="fill: #447784; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1050" y="1008.09091799303" />
+	<text style="font-size: 10; stroke: none" x="1048" y="1003.09091799303">97.98%</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1799.58675811976" y="208.596500450033">Chr09</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1834.94209717909" y="173.241161390706">Chr9</text>
+	<rect height="393.285811577971" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1125" y="1006.71418842203" />
+	<text style="font-size: 10; stroke: none" x="1122" y="1001.71418842203">98.32%</text>
+	<rect height="395.306538868247" style="fill: #447784; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1175" y="1004.69346113175" />
+	<text style="font-size: 10; stroke: none" x="1173" y="999.693461131753">98.83%</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1887.97510576808" y="120.208152801715">Chr10</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1923.33044482741" y="84.8528137423874">Chr10</text>
+	<rect height="308.20605509431" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1250" y="1091.79394490569" />
+	<text style="font-size: 10; stroke: none" x="1247" y="1086.79394490569">77.05%</text>
+	<rect height="309.47162968813" style="fill: #447784; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1300" y="1090.52837031187" />
+	<text style="font-size: 10; stroke: none" x="1298" y="1085.52837031187">77.37%</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="1976.3634534164" y="31.8198051533964">Chr11</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="2011.71879247573" y="-3.53553390593095">Chr11</text>
+	<rect height="314.565511788949" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1375" y="1085.43448821105" />
+	<text style="font-size: 10; stroke: none" x="1372" y="1080.43448821105">78.64%</text>
+	<rect height="337.485571957197" style="fill: #447784; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1425" y="1062.5144280428" />
+	<text style="font-size: 10; stroke: none" x="1423" y="1057.5144280428">84.37%</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="2064.75180106472" y="-56.568542494922">Chr12</text>
+	<text style="font-size: 15; stroke: none" transform="rotate(45)" x="2100.10714012405" y="-91.9238815542493">Chr12</text>
+	<rect height="293.163409462141" style="fill: #3979BC; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1500" y="1106.83659053786" />
+	<text style="font-size: 10; stroke: none" x="1497" y="1101.83659053786">73.29%</text>
+	<rect height="296.902507642749" style="fill: #447784; rx: 5; ry: 5; stroke: black; stroke-width: 1" width="25" x="1550" y="1103.09749235725" />
+	<text style="font-size: 10; stroke: none" x="1548" y="1098.09749235725">74.23%</text>
+	<!--
+	Generated using the Perl SVG Module V2.85
+	by Ronan Oger
+	Info: http://www.roitsystems.com/
+	-->
+</svg>
