@@ -24,11 +24,11 @@ $ export PATH=/your_path/GenomeSyn/mummer-4.0.0beta2:$PATH
 2. Perl and perl module we recommend that the version of perl should be at least 5.10.0 (use perl -v to check the version). Although most of the GenomeSyn modules used already exist, you may still need to install the SVG module and the BioPerl module. Due to the lack of administrator rights, it is sometimes troublesome to install perl modules under Linux systems. This page introduces two installations of the [SVG](https://cpan.metacpan.org/authors/id/M/MA/MANWAR/SVG-2.85.tar.gz "SVG") module and three installations [BioPerl] (https://cpan.metacpan.org/authors/id/C/CJ/CJFIELDS/BioPerl-1.7.8.tar.gz "BioPerl") module method, but in fact cpanm is the most friendly installation perl module method. You can find the pre-compiled source code of cpanm here [page](https://bioperl.org/INSTALL.html). There are SVG and BioPerl compressed packages in our GenomeSyn, which can be installed and used after decompression. 
 
 ### install SVG 
-
+```
 $ cpanm SVG 
-
+```
 #Unzip and install SVG 
-
+```
 $ tar -zxvf SVG-2.85.tar.gz 
 $ cd SVG-2.85/ 
 $ perl Makefile.PL 
@@ -36,28 +36,28 @@ $ make
 $ make test 
 ### Add SVG to your PATH
 $ PERL5LIB=/your_path/GenomeSyn/SVG-2.85/lib:$PERL5LIB 
-
+```
 ### install BioPerl 
-
+```
 $ cpanm Bio::SeqIO 
-
-#Unzip and install BioPerl 
-
+```
+### Unzip and install BioPerl 
+```
 $ tar -zxvf BioPerl-1.7.8.tar.gz 
 $ cd BioPerl-1.7.8/ 
 $ perl Makefile.PL 
 $ make 
 $ make test 
-
+```
 ### Add Perl module to your PATH 
-
+```
 $ PERL5LIB=/your_path/GenomeSyn/BioPerl-1.7.8/lib:$PERL5LIB 
-
+```
 3. Python and python module 
 
 Here we need to use python's svglib package to convert the output SVG file into a PDF file. 
 Install [Python] (https://www.python.org/ftp/python/3.9.4/Python-3.9.4.tgz "Python") and svglib[svglib] (https://files.pythonhosted.org/ packages/c0/2c/5ab28095c9ce09a6d341cb37c0ad3a7ffc65e5c5f2eaa2247c085679ca2f/svglib-1.1.0.tar.gz "svglib") package can refer to the following: 
-
+```
 $ tar -zxvf Python-3.9.4.tgz -C ./ 
 $ cd ./Python-3.9.4 
 $./configure --prefix=$current_path/Python-3.9.4/localpython 
@@ -68,9 +68,10 @@ $ PATH=/your_path/GenomeSyn/Python-3.9.4/python:$PATH
 $ tar -zxvf svglib-1.1.0.tar.gz -C ./ 
 $ cd svglib-1.1.0/ 
 $ /your_path/GenomeSyn/Python-3.9.4/python setup.py install 
-
+```
 There is an install.sh script in our GenomeSyn package. Running this shell script can help us install the required modules (SVG, BioPerl, Python and svglib of python module) and add environment variables for the corresponding modules. After running this shell script, reload the environment variables to run.
-Quick start
+
+# Quick start
 
 	eg. GenomeSyn -g1 ../data/rice_MH63.fa -g2 ../data/rice_ZS97.fa
 
