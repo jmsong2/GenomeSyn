@@ -1,6 +1,8 @@
 # GenomeSyn
 We developed GenomeSyn as a new tool for constructing and visualizing genome synteny, its novel design and implementation can serve as a necessary complement to the study of genomic synteny and structural variation and its visualization tools.
 
+An online service of GenomeSyn at: http://cbi.gxu.edu.cn/GenomeSyn/. 
+
 ![fig1](https://user-images.githubusercontent.com/84839565/147895831-1c6e7f17-9c85-4478-89df-2beccb78586a.png)
 
 ## Install
