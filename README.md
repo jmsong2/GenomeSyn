@@ -34,7 +34,7 @@ $ cd SVG-2.85/
 $ perl Makefile.PL 
 $ make 
 $ make test 
-# Add SVG to your PATH
+### Add SVG to your PATH
 $ PERL5LIB=/your_path/GenomeSyn/SVG-2.85/lib:$PERL5LIB 
 
 ### install BioPerl 
